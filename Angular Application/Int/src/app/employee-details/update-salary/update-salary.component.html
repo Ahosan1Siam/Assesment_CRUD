@@ -1,0 +1,26 @@
+
+<div class="container">
+
+</div>
+
+<div class="Supdate">
+    <form autocomplete="off" #sUpdate="ngForm" (ngSubmit)="sUpdate.form.valid">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                        <label for="salary">Enter Salary for 6th Grade</label>
+                        <input type="number" min="0" name="salary" class="form-control" placeholder="Enter salary" #salary="ngModel"[(ngModel)]="empService.salaryData.salary">
+                    </div>
+            </div>
+                    <div class="row">
+                        <div class="col-md-8"></div>
+                        <div class="col-md-2">
+                        <button type="submit" (click)="submit(empService.salaryData.salary, sUpdate)"  class="btn btn-success btn-block">Save</button>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="reset" class="btn btn-danger btn-block">Cancel</button>
+                        </div>
+                </div>
+            </div>
+    </form>
+</div>

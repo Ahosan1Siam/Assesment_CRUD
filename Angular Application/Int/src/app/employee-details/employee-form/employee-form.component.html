@@ -1,0 +1,60 @@
+<input #checkbox1 type="checkbox" name="toggle" id="toggle">
+
+<label for="toggle"></label>
+
+<div class="container">
+
+</div>
+
+<div class="formAdd">
+    <form autocomplete="off" #myForm="ngForm" (ngSubmit)="myForm.form.valid  && submit(myForm)">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="hidden" name="id" [value]="empService.employeeData.id">
+                    <label for="name">Name</label>
+                    <div *ngIf="name.invalid && (name.touched || name.dirty)" class="float-right">
+                        <p class="text-danger">Required</p>
+                    </div>
+                    <input type="text" name="name" class="form-control" placeholder="Enter Name" #name="ngModel"[(ngModel)]="empService.employeeData.name" required>
+                </div>
+                    <div class="col-md-3">
+                        <label for="address">Address</label>
+                        <div *ngIf="address.invalid && (address.touched || address.dirty)" class="float-right">
+                            <p class="text-danger">Required</p>
+                        </div>
+                        <input type="text" name="address" class="form-control" placeholder="Enter Address" #address="ngModel" [(ngModel)]="empService.employeeData.address" required>
+                       
+                    </div>
+                    <div class="col-md-3">
+                        <label for="moblie">Mobile No</label>
+                        <div *ngIf="mobile.invalid && (mobile.touched || mobile.dirty)" class="float-right">
+                            <p class="text-danger">Required</p>
+                        </div>
+                        <input type="text"  name="mobile" class="form-control" maxlength="11" placeholder="Enter Mobile No" #mobile="ngModel" [(ngModel)]="empService.employeeData.mobile" required>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="grade" class="label">Grade</label>
+                    <div *ngIf="grade.value ==0" class="float-right">
+                        <p class="text-danger">Required</p>
+                    </div>
+                    <select name="grade" class="form-control" #grade="ngModel" [(ngModel)]="empService.employeeData.grade" required>
+                        <option value="0">Please select</option>
+                        <option  *ngFor="let desg of empService.listGrade" [ngValue]="desg.grade">{{ desg.grade }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8"></div>
+                <div class="col-md-2">
+                <button type="submit" [disabled]="grade.value==0" class="btn btn-success btn-block">Save</button>
+                </div>
+                <div class="col-md-2">
+                    <button type="reset" class="btn btn-danger btn-block">Cancel</button>
+                    </div>
+            </div>
+        </div>
+    </form>
+</div>
